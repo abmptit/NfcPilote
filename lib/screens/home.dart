@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:nfc_pilote/screens/read.dart';
 import 'package:nfc_pilote/screens/write.dart';
+import 'package:nfc_pilote/screens/readqrcode.dart';
+import 'package:nfc_pilote/screens/writeqrcode.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -18,12 +19,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _navigateToRead() async {
-    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => readPage(title: "Read",)));
+  void _navigateToReadNfc() async {
+    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => readPage(title: "Read NFC",)));
   }
 
-  void _navigateToWrite() async {
-    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => writePage(title: "Write",)));
+  void _navigateToWriteNfc() async {
+    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => writePage(title: "Write NFC",)));
+  }
+
+
+  void _navigateToReadQrCode() async {
+    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => readQrCodePage(title: "Read QR Code",)));
+  }
+
+  void _navigateToWriteQrCode() async {
+    bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) => writeQrCodePage(title: "Write QR Code",)));
   }
 
   @override
@@ -36,33 +46,48 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FloatingActionButton(
-              heroTag: "read",
-              onPressed: _navigateToRead,
+            IconButton(
+              iconSize: 120,
+              color: Colors.green,
+              onPressed: _navigateToReadNfc,
               tooltip: 'Read NFC Tag',
-              child: Icon(Icons.remove_red_eye_sharp),
-            ),
-            FloatingActionButton(
-              heroTag: "write",
-              onPressed: _navigateToWrite,
-              tooltip: 'Read NFC Tag',
-              child: Icon(Icons.edit),
+              icon: Icon(Icons.nfc_sharp),
             ),
             Text(
-              'You have pushed the button this many times:',
+              'Reading NFC Tag',
+            ),
+            IconButton(
+              iconSize: 120,
+              color: Colors.red,
+              onPressed: _navigateToWriteNfc,
+              tooltip: 'Write NFC Tag',
+              icon: Icon(Icons.nfc_sharp),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              'Write NFC Tag',
+            ),
+            IconButton(
+              iconSize: 120,
+              color: Colors.green,
+              onPressed: _navigateToReadQrCode,
+              tooltip: 'Read QRCode',
+              icon: Icon(Icons.qr_code),
+            ),
+            Text(
+              'Reading QRCode',
+            ),
+            IconButton(
+              iconSize: 120,
+              color: Colors.red,
+              onPressed: _navigateToWriteQrCode,
+              tooltip: 'Write NFC Tag',
+              icon: Icon(Icons.qr_code),
+            ),
+            Text(
+              'Write QRCode',
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: "counter",
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

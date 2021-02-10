@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/home.dart';
+import 'package:nfc_pilote/screens/home.dart';
+import 'package:nfc_pilote/screens/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Home'),
+      //home: SplashScreen(),
+      home: HomePage(title: "Home",),
       debugShowCheckedModeBanner: false,
     );
   }
